@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div ng-repeat="activity in Activities">
+        <!--<asp:DataList ID="ContentDataList2" runat="server" CellSpacing="2">
+            <FooterTemplate>
+            </FooterTemplate>
+            <ItemTemplate>-->
+        <div id="post-container">
+            <div id="ContentHeadPanel1">
+                <div style="position: relative;">
+                    <table class="auto-style1">
+                        <tr>
+                            <td style="width: 40px; vertical-align: top;">
+                                <a href="{{OwnerImageURL}}"> <img src="{{OwnerImage}}" alt="Alternate Text" /> </a>
+                                <!--<asp:ImageButton ID="Image1" runat="server" ImageAlign="Top" ImageUrl='<%#Eval("OwnerImage") %>' PostBackUrl='<%#Eval("OwnerImageURL") %>' />-->
+                                <div ng-show="{{isVerified}}" id="verifyPanel">
+                                    <img src="~/Images/verified_icon.png" alt="Alternate Text" />
+                                </div>
+                                <!--<asp:Panel ID="VerifyPanel1" runat="server" Font-Bold="True" Visible='<%#Eval("isVerififed") %>'>
+                                    <asp:Image ID="Image5" runat="server" ImageUrl="~/Images/verified_icon.png" />
+                                </asp:Panel>-->
+                            </td>
+                            <td>
+                                <a class="strong" disabled="{{OwnerURLEnabled}}" href="{{OwnerURL}}">{{Owner}}</a>
+                                <!--<asp:HyperLink ID="HyperLink1" runat="server" CssClass="strong" Enabled='<%# Eval("OwnerURLEnabled") %>' NavigateUrl='<%# Eval("OwnerURL") %>' Text='<%# Eval("Owner") %>'></asp:HyperLink>-->
+                                <br />
+                                <label class="cdtime">{{Date}}</label>
+                                <!--<asp:Label ID="Label2" runat="server" CssClass="cdtime" Text='<%# Eval("Date") %>'></asp:Label>-->
+                            </td>
+                            <td style="vertical-align: bottom; min-width: 40px;">
+                                <span class="clicker" style="float: right; cursor: pointer;">
+                                    <img src="~/Images/expand.png" alt="Alternate Text" ng-show="{{showPostOptions}}" />
+                                    <!-- <asp:Image ImageUrl="~/Images/expand.png" Width="16px" Height="16px" runat="server" Visible='<%#Eval("showPostOptions") %>' />-->
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="more-options">
+                        <div value="1" class="post-options" data-alt-icon="{{activityContainer.Savealticon}}" runat="server" feed-value="{{activityContainer.ActivityFeedID}}" post-saved="{{activityContainer.PostSaved}}"
+                             ng-show="{{ShowSavePost}}">
+                            <img src="{{activityContainer.Saveicon}}" class="options-icon" />
+                            <label ID="savedPostLabel">{{activityContainer.PostSaveText}}</label>
+                        </div>
+                        <!--<div value="1" class="post-options" data-alt-icon='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).Savealticon %>' runat="server" feed-value='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).ActivityFeedID %>' post-saved='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).PostSaved %>'
+                             visible='<%#Eval("ShowSavePost") %>'>
+                            <asp:Image ImageUrl='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).Saveicon %>' runat="server" CssClass="options-icon" />
+                            <asp:Label Text='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).PostSaveText %>' ID="savedPostLabel" ClientIDMode="Static" runat="server" />
+                        </div>-->
+                        <div value="2" ng-show="{{ShowSharePost}}" feed-value="{{activityContainer.ActivityFeedID}}" class="post-options">
+                            <img src="~/Images/side-options/share-post.jpg" class="options-icon" />
+                            Share
+                        </div>
+                        <!--<div value="2" runat="server" visible='<%#Eval("ShowSharePost") %>' feed-value='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).ActivityFeedID %>' class="post-options">
+                            <asp:Image ImageUrl="~/Images/side-options/share-post.jpg" runat="server" CssClass="options-icon" />
+                            Share
+                        </div>-->
+                        <div value="3" class="post-options" ng-show="{{ShowShareExternalPost}}">
+                            <img src="~/Images/side-options/share-post-external.jpg" class="options-icon" />
+                            Share external
+                        </div>
+                        <!--<div value="3" class="post-options" runat="server" visible='<%#Eval("ShowShareExternalPost") %>'>
+                            <asp:Image ImageUrl="~/Images/side-options/share-post-external.jpg" runat="server" CssClass="options-icon" />
+                            Share external
+                        </div>-->
+                        <div value="4" data-alt-icon="{{activityContainer.FeedAlticon}}" data-switch="{{activityContainer.Feedstatus}}" ng-show="{{activityContainer.ShowFeedStatus}}"
+                             class="post-options">
+                            <img src="{{activityContainer.Feedicon}}" class="options-icon" />
+                            <asp:Label ID="feedStatus" ClientIDMode="Static" Text='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).FeedStatusText %>' runat="server"></asp:Label>
+                        </div>
+                        <!--<div value="4" data-alt-icon='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).FeedAlticon %>' data-switch='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).Feedstatus %>' runat="server" visible='<%# ((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).ShowFeedStatus%>'
+                             class="post-options">
+                            <asp:Image ImageUrl='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).Feedicon %>' runat="server" CssClass="options-icon" />
+                            <asp:Label ID="feedStatus" ClientIDMode="Static" Text='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).FeedStatusText %>' runat="server"></asp:Label>
+                        </div>-->
+                        <!-- HiddenField Is not longer needed since Angular has it -->
+                        <!--  <asp:HiddenField ID="Urlpath" ClientIDMode="Static" runat="server" Value='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).ActivityUrl%>' />-->
+                    </div>
+                </div>
+            </div>
+            <div id="ContentPanel1">
+                <div id="contentView">
+                    <div id="content" class="content-section">
+                        <label>{{Content.Content}}</label>
+                    </div>
+                    <div ng-show="{{CanEditDelete}}" class="two-button-sides-mobile">
+                        <div class="two-button-sides-side-mobile">
+                            <button ID="EditButton1" value="Edit" />
+                        </div>
+                        <div class="two-button-sides-side-mobile">
+                            <button ID="deleteButton1" value="Delete" />
+                        </div>
+                    </div>
+                    <!-- Poll View would be the next step. the content could be text or poll that has a call to action button to view/ vote on a poll and when a user does, that section is changed to show the results of the poll. Visit dev.mynaijareviews.com login and select polls to see what i mean. -->
+                </div>
+                <!--<asp:MultiView runat="server" ID="contentViews" ActiveViewIndex="0">
+                    <asp:View runat="server" ID="NonPollView">
+                        <div style="padding: 5px">
+                            <asp:Label ID="ReviewComment" runat="server" CssClass="content-section" Text='<%#((RList.Library.DataAccess.ActivityContent)Eval("Content")).Content %>'></asp:Label>
+                            <asp:Panel ID="Panel2" runat="server" Visible='<%#Eval("CanEditDelete") %>' CssClass="two-button-sides-mobile">
+                                <div class="two-button-sides-side-mobile">
+                                    <asp:Button ID="EditButton1" runat="server" Text="Edit" />
+                                </div>
+                                <div class="two-button-sides-side-mobile">
+                                    <asp:Button ID="deleteButton1" runat="server" Text="Delete" />
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </asp:View>
+                    <asp:View runat="server" ID="PollView">
+                        <uc1:ViewPoll runat="server" ID="ViewPoll" />
+                    </asp:View>
+                </asp:MultiView>-->
+            </div>
+            <div ID="LikeSectionPanel2">
+                <div style="padding-top: 10px; padding-bottom: 10px;">
+                    <div class="ldc-wrapper">
+                        <div class="ldc-item">
+                            <label ID="LikeButton" class="lhb-Likebutton" OnClick="processLikeButton(this)">{{LikeStat.Likes}}</label>
+                        </div>
+                        <div class="ldc-item">
+                            <label ID="DisLikeButton" class="lhb-Likebutton" OnClick="processLikeButton(this)">{{LikeStat.Dislikes}}</label>
+                        </div>
+                        <div class="ldc-item">
+                            <label ID="CommentButton3" class="lhb-Likebutton" OnClick="showCommentBox(this)">Comment</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<asp:Panel runat="server" ID="LikeSectionPanel2">
+                <div style="padding-top: 10px; padding-bottom: 10px;">
+                    <asp:Panel ID="FirstLinePanel2" runat="server">
+                        <div class="ldc-wrapper">
+                            <div class="ldc-item">
+                                <asp:Label ID="LikeButton" runat="server" SkinID="lhb-Likebutton" Text='<%#((RList.Library.ActivityModel.LikeStats) Eval("LikeStat")).Likes %>' OnClick="processLikeButton(this)" ClientIDMode="Static"></asp:Label>
+                            </div>
+                            <div class="ldc-item">
+                                <asp:Label ID="DisLikeButton" runat="server" SkinID="lhb-Likebutton" Text='<%#((RList.Library.ActivityModel.LikeStats) Eval("LikeStat")).Dislikes %>' OnClick="processDisLikeButton(this)" ClientIDMode="Static"></asp:Label>
+                            </div>
+                            <div class="ldc-item">
+                                <asp:Label ID="CommentButton3" runat="server" SkinID="lhb-Likebutton" Text="Comment" OnClick="showCommentBox(this)" />
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
+            </asp:Panel>-->
+            <div ID="CommentSectionPanel1">
+                <!-- This is the box that shows when you click the Comment in likeSection -->
+                <div class="CommentBox" style="display: none; width: 100%;">
+                    <input type="text" id="CommentText1" Width="100%" />
+                    <!--<asp:TextBox ID="CommentText1" runat="server" ClientIDMode="Static" Rows="2" TextMode="MultiLine" Width="100%"></asp:TextBox>-->
+
+                    <div class="two-button-sides-mobile">
+                        <div class="two-button-sides-side-mobile">
+                            <label ID="CommentButton4" class="lhb-Likebutton" onclick="addNewRow(this)">Submit</label>
+                            <!--<asp:Label ID="CommentButton4" runat="server" SkinID="lhb-Likebutton" Text="Submit" onclick="addNewRow(this)" />-->
+                        </div>
+                        <div class="two-button-sides-side-mobile">
+                            <label ID="CommentButton5" class="lhb-Likebutton" onclick="HideCommentBox(this)">Cancel</label>
+                            <!--<asp:Label ID="Label1" runat="server" SkinID="lhb-Likebutton" Text="Cancel" onclick="HideCommentBox(this)" />-->
+                        </div>
+                    </div>
+                </div>
+                <div class="lighterColor full-width" id="comments">
+                    <div ng-repeat="data in Comments">
+                        <!--<asp:DataList ID="CommentDataList1" DataSource='<%#Eval("Comments") %>' runat="server" CssClass="commentTable">
+                            <ItemTemplate>-->
+                        <table style="">
+                            <tr>
+                                <td style="vertical-align: top; width: 40px">
+                                    <a href="{{data.UserProfileLink}}"><img src="{{data.UserPhoto35x35}}" alt="Alternate Text" /></a>
+                                    <!--<asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# Eval("UserPhoto35x35") %>'
+                                                     PostBackUrl='<%#Eval("UserProfileLink") %>' />-->
+                                </td>
+                                <td>
+                                    <a href="{{data.UserProfileLine}}">{{data.Username}}</a>
+                                    <!--<asp:HyperLink ID="CommentUserHyperLink" runat="server" Text='<%#Eval("Username") %>' NavigateUrl='<%# Eval("UserProfileLink") %>'></asp:HyperLink>-->
+                                    &nbsp;
+                                    <label id="dateLabel" css="cdtime">{{data.Date}}</label>
+                                    <!--<asp:Label ID="dateRLabel" runat="server" CssClass="cdtime" Text='<%# Eval("Date") %>'></asp:Label>-->
+                                    <br />
+                                    <label id="commentLabel">{{data.ThisComment}}</label>
+                                    <!--<asp:Label ID="CommentLabel" runat="server" Text='<%# Eval("ThisComment") %>'></asp:Label>-->
+                                    <br />
+                                    <label id="likeCommentLabel" class="{{data.commentClass}}" onclick="processLikeComment(this)">{{data.Likes}}</label>
+                                    <!--<asp:Label ID="LikeButtonInner" runat="server" Text='<%#Eval("Likes") %>' OnClick="processLikeComment(this)" CssClass='<%#Eval("commentClass") %>'></asp:Label>-->
+                                    &nbsp;
+                                    <label id="replyLabel" ng-show="{{data.CanReply}}" class="comment-button">Reply</label>
+                                    <!--<asp:LinkButton ID="LinkButton6" runat="server" CssClass="comment-button" Visible='<%#Eval("CanReply") %>' CommandArgument='<%# Eval("ID") %>'>Reply</asp:LinkButton>-->
+                                    <!-- No need for hidden fields -->
+                                    <!--<asp:HiddenField ID="CommentInitialLikeStateHiddenField1" runat="server" ClientIDMode="Static" Value='<%#Eval("userLikeStatus") %>' />
+                                    <asp:HiddenField ID="CommentIDHiddenField1" runat="server" ClientIDMode="Static" Value='<%#Eval("ID") %>' />-->
+                                </td>
+                            </tr>
+                        </table>
+                        <hr />
+                        <!--</ItemTemplate>
+                        </asp:DataList>-->
+                    </div>
+                </div>
+            </div>
+            <!-- No need for hidden values -->
+            <!--<div id="InputArea">
+                <asp:HiddenField ID="IDHiddenField1" runat="server" Value='<%# Eval("ID")%>' />
+                <asp:HiddenField ID="_IsloggedInHiddenField1" Value='<%#Page.User.Identity.IsAuthenticated %>' runat="server" ClientIDMode="Static" />
+                <%--                <asp:HiddenField ID="_UserIDHiddenField4" runat="server" Value='<%#RList.MNR_Classes.User.CurrentUser %>' ClientIDMode="Static" />
+                <asp:HiddenField ID="_UserRoleHiddenField9" Value='<%#RList.MNR_Classes.CUnit.UserRole %>' runat="server" ClientIDMode="Static" />--%>
+            </div>-->
+            <hr />
+        </div>
+        <!--</ItemTemplate>
+        </asp:DataList>-->
+    </div>
+</body>
+</html>
