@@ -1,0 +1,306 @@
+/* DEFAULTS
+----------------------------------------------------------*/
+:root {
+    --primary-green: #7FC451;
+    --secondary-green: #AAD090;
+}
+
+/*#region Special Radio Button */
+
+.customradio input[type=radio] {
+    display: none;
+}
+
+    .customradio input[type=radio] + label::before {
+        content: '';
+        display: inline-block;
+        border: 2px solid #7FC451;
+        border-radius: 50%;
+        margin: 0 5px;
+        width: 1em;
+        height: 1em;
+        cursor: pointer;
+    }
+
+    .customradio input[type=radio]:checked + label::before {
+        background-color: #AAD090;
+    }
+
+/*#endregion */
+/*#region GridView Pagination */
+.GridPager a, .GridPager span {
+    display: block;
+    /*height: 15px;*/
+    width: 6em;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+.GridPager table {
+    width: auto;
+}
+
+.GridPager a {
+    background-color: #f5f5f5;
+    color: #969696;
+    border: 1px solid #969696;
+}
+
+.GridPager span {
+    background-color: var(--secondary-green);
+    color: #000;
+    border: 1px solid var(--primary-green);
+}
+
+/*#endregion */
+
+.mnr-source-link-class {
+    background: url(/images/rss_icon20.png) left no-repeat;
+    background-size: 20px;
+    padding-left: 22px;
+}
+
+    .mnr-source-link-class:hover {
+        text-decoration: underline;
+    }
+
+.error {
+    color: red;
+}
+
+.lighterror {
+    color: #FF6666;
+}
+
+.wrap-text-in-link {
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px;
+}
+
+    .wrap-text-in-link:hover {
+        background: rgba(170, 208, 144, 0.20);
+    }
+
+.ajaxcpanel {
+    height: 0;
+    overflow: hidden;
+}
+
+.ajaxcpanelh {
+    cursor: pointer;
+}
+
+.leftImage {
+    float: left;
+    padding: 5px;
+}
+
+.RightImage {
+    float: right;
+    padding: 5px;
+}
+
+.LeftMenu {
+    font-weight: bold;
+}
+
+.RightMenu {
+    font-style: italic;
+}
+
+.comments {
+    text-transform: lowercase;
+}
+
+.super {
+    color: red;
+}
+
+.MyButton {
+    border: 1px outset #CCCCCC;
+    background-color: #FFFBFF;
+    font-family: Verdana;
+    Font-Size: 0.8em;
+    Color: #284775;
+}
+
+.IBizName {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.CityState {
+    font-size: x-small;
+    font-style: italic;
+    color: #808080;
+}
+
+/*View Review Page .. */
+.BizName {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.totalReview {
+    font-size: smaller;
+    font-family: Arial;
+    font-style: italic;
+}
+
+.BizType {
+    font-size: 11px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.City {
+    font-size: 11px;
+    font-style: italic;
+}
+
+.BizDescription {
+}
+
+.Left {
+    vertical-align: top;
+}
+
+.Middle {
+    width: 45%;
+    vertical-align: top;
+}
+
+.Right {
+    width: 27.5%;
+    vertical-align: top;
+}
+/* Rating */
+/* Rating */
+.ratingStar {
+    font-size: 0pt;
+    width: 21px;
+    height: 18px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.filledRatingStar {
+    background-image: url(Images/FilledStar.png);
+}
+
+.emptyRatingStar {
+    background-image: url(Images/EmptyStar.png);
+}
+
+.savedRatingStar {
+    background-image: url(Images/SavedStar.png);
+}
+
+.BizNameLink {
+    font-size: small;
+    font-weight: bold;
+}
+
+.Images {
+    vertical-align: top;
+}
+
+.back-to-top {
+    background: none;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    display: none;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #7FC451;
+}
+
+.back-to-top i {
+        font-size: 60px;
+}
+
+/* Helper classes */
+.margin-top-5px {
+  margin-top: 5px;
+}
+
+.margin-top-10px {
+  margin-top: 10px;
+}
+
+.margin-left-5px {
+  margin-left: 5px;
+}
+
+.margin-right-5px {
+  margin-right: 5px;
+}
+
+.margin-left-10px {
+  margin-left: 10px;
+}
+
+.margin-right-10px {
+  margin-right: 10px;
+}
+
+.padding-top-10px {
+  padding-top: 10px;
+}
+
+.green {
+  color: #7FC451;
+}
+
+.grey {
+  color: #bdbdbd;
+}
+
+.dark-grey {
+  color: #828282;
+}
+
+/*End of helper classes*/
+
+.post-activity {
+  display: inline-block;
+}
+
+.btn-green {
+  background-color: #7FC451;
+}
+
+.btn-grey {
+  background-color: #bdbdbd;
+}
+
+.btn-borderless {
+  border: transparent;
+  background-color: transparent;
+  color: none;
+}
+
+.action {
+  color: #7FC451
+}
+
+a.action:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dropdown-menu.activity-dropdown {
+  left: auto;
+  right: 0;
+}

@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html ng-app="mnrApp">
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel = "stylesheet" href="styles/stylesheet.css">
+    <link rel = "stylesheet" href="styles/bootstrap/css/bootstrap.css">
+    <link rel = "stylesheet" href="styles/site.css">
+    <link rel = "stylesheet" href="styles/cssUpdateProgress.css">
+    <link rel = "stylesheet" href="styles/jquery.modal.min.css">
+    <link rel = "stylesheet" href="styles/font-awesome/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="scripts/ActivityContentCtrl.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="styles/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-controller="ActivityContentController as activityContentCtrl">
+  <div class = "row">
+    <div class="col-md-8">
+      <div ng-repeat="activity in activityContentCtrl.activities" class="container-fluid">
+          <div id="post-container" class="panel panel-default">
+            <div class="panel-body">
+              <div id="ContentHeadPanel1">
+                  <div style="position: relative;">
+                      <div class="row">
+                        <div class = "col-xs-1">
+                          <a href="">
+                              <img src="https://static.pexels.com/photos/101584/pexels-photo-101584.jpeg" style="max-width: 40px" alt="photo of poster" />
+                          </a>
+                          <!-- <div id="verifyPanel">
+                            <span id="verifyPanel" class="fa fa-check-square green margin-left-10px" alt="verified icon"> </span>
+                          </div> -->
+                        </div>
+                        <div class="col-xs-9">
+                          <a class="strong green" href="">Activity owner</a>
+                            <br />
+                          <label class="cdtime grey">May 15</label>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                          <div class="dropdown">
+                            <button class="btn btn-borderless dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              <span class="fa fa-chevron-down grey" ng-show="{activity.showPostOptions}"></span>
+                            </button>
+                            <ul class="dropdown-menu activity-dropdown" aria-labelledby="dropdownMenu1">
+                              <li><a href="#"><i class="fa fa-save margin-right-10px"></i>Save post</a></li>
+                              <li><a href="#"><i class="fa fa-share margin-right-10px"></i>Share post</a></li>
+                              <li><a href="#"><i class="fa fa-close margin-right-10px"></i>Remove from my feed</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="more-options">
+                          <div value="1" class="post-options" data-alt-icon="{{activity.activityContainer.Savealticon}}" runat="server" feed-value="{{activity.activityContainer.ActivityFeedID}}" post-saved="{{activity.activityContainer.PostSaved}}" ng-show="{{activity.ShowSavePost}}">
+                              <img ng-src="{{activity.activityContainer.Saveicon}}" class="options-icon" />
+                              <label ID="savedPostLabel">{{activity.activityContainer.PostSaveText}}</label>
+                          </div>
+                          <div value="2" ng-show="{{activity.ShowSharePost}}" feed-value="{{activity.activityContainer.ActivityFeedID}}" class="post-options">
+                              <img src="~/Images/side-options/share-post.jpg" class="options-icon" /> Share
+
+                          </div>
+                          <div value="3" class="post-options" ng-show="{{activity.ShowShareExternalPost}}">
+                              <img src="~/Images/side-options/share-post-external.jpg" class="options-icon" /> Share external
+
+                          </div>
+                          <div value="4" data-alt-icon="{{activity.activityContainer.FeedAlticon}}" data-switch="{{activity.activityContainer.Feedstatus}}" ng-show="{{activity.activityContainer.ShowFeedStatus}}" class="post-options">
+                              <img ng-src="{{activity.activityContainer.Feedicon}}" class="options-icon" />
+                              <asp:Label ID="feedStatus" ClientIDMode="Static" Text='<%#((RList.MNR_Classes.theWall.ActivityContainer) Eval("activityContainer")).FeedStatusText %>' runat="server">
+                              </asp:Label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div id="ContentPanel1">
+                  <div id="contentView">
+                      <div id="content" class="content-section">
+                          <label>{{activity.Content.Content}}</label>
+                      </div>
+                      <div ng-show="{{activity.CanEditDelete}}" class="two-button-sides-mobile">
+                          <div class="two-button-sides-side-mobile">
+                              <button ID="EditButton1" value="Edit" />
+                          </div>
+                          <div class="two-button-sides-side-mobile">
+                              <button ID="deleteButton1" value="Delete" />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div ID="LikeSectionPanel2">
+                  <div style="padding-top: 10px; padding-bottom: 10px;">
+                    <span class="post-activity margin-right-10px dark-grey"><i class="fa fa-thumbs-up margin-right-5px"></i>50</span>
+                    <span class="post-activity margin-right-10px dark-grey"><i class="fa fa-thumbs-down margin-right-5px"></i>1</span>
+                    <span class="post-activity margin-right-10px dark-grey"><i class="fa fa-comment margin-right-5px"></i>0</span>
+                  </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <div ID="CommentSectionPanel1">
+                  <!-- <div class="CommentBox" style="display: none; width: 100%;"> -->
+
+                      <!-- <input type="text" id="CommentText1" Width="100%" />
+                      <div class="two-button-sides-mobile">
+                          <div class="two-button-sides-side-mobile">
+                              <label ID="CommentButton4" class="lhb-Likebutton" onclick="addNewRow(this)">Submit</label>
+                          </div>
+                          <div class="two-button-sides-side-mobile">
+                              <label ID="CommentButton5" class="lhb-Likebutton" onclick="HideCommentBox(this)">Cancel</label>
+                          </div>
+                      </div> -->
+                  <!-- </div> -->
+                  <!-- <div class="lighterColor full-width" id="comments"> -->
+                      <div ng-repeat="data in activity.Comments">
+
+                        <div class="row">
+                          <div class="col-xs-1">
+                            <a><img ng-src="{{data.UserPhoto35x35}}" alt="User avatar" style = "max-width: 100%; height: 30px;"/></a>
+                          </div>
+
+                          <div class="col-xs-11">
+                            <a ng-href="{{data.UserProfileLink}}">{{data.Username}}</a>
+                            <label id="commentLabel">{{data.ThisComment}}</label>
+                            <br />
+                            <span>
+                              <label id="likeCommentLabel" class="{{data.commentClass}} margin-top-10px margin-right-5px green" onclick="processLikeComment(this)"><a href="" class="action">{{data.Likes}} likes</a></label>
+                              <span class ="grey margin-right-5px">.</span>
+                              <label id="replyLabel" ng-show="{{data.CanReply}}" class="margin-top-10px margin-right-5px green"><a href="" class="action">Reply</a></label>
+                              <span class ="grey margin-right-5px">.</span>
+                              <label class = "margin-top-10px dark-grey" id="dateLabel" css="cdtime">{{data.Date}}</label>
+                            </span>
+                            <br/>
+                          </div>
+                        </div>
+                          <!-- <hr /> -->
+                      </div>
+                  <!-- </div> -->
+                  <div class="margin-top-10px"></div>
+                  <div class="row">
+                    <div class="col-xs-1">
+                      <img src="https://images.pexels.com/photos/160238/pexels-photo-160238.jpeg?h=350&auto=compress&cs=tinysrgb" style="max-width: 100%; max-height: 100%;"/>
+                    </div>
+                    <div class="col-xs-9 col-md-8">
+                      <input class="form-control" type="text" placeholder="Type a comment">
+                    </div>
+                    <div class="col-xs-2 col-md-3">
+                      <button type="submit" class="btn btn-grey"><b>Post comment</b></button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+              <!-- <hr /> -->
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+    </div>
+  </div>
+
+</body>
+
+</html>
